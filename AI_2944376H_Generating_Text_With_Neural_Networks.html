@@ -3,7 +3,7 @@
 <head><meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>2944376H_Generating_Text_With_Neural_Networks</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
+<title>AI_2944376H_Generating_Text_With_Neural_Networks</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 
 
 
@@ -14606,7 +14606,7 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <p>In the following notebook, a generative AI model is being built trained and put to use. Its purpose is to generate text, based on a shakespeare dataset so that new text in the style of Shakespeare is being generated.
 It might also be possible to apply this network to other datasets, using other authors as a basis. The notebook will lead through the steps in the machine learning process and in the end the trained model will be tested by giving it the beginning of a Shakespeare quote and have the model continue the text.</p>
-<p>This project could for example find use in an interactive digital archive project, helping people get a new few on famous authors. If further developed, it could become an interactive installation that lets people pretend to be talking to for example Shakespeare.</p>
+<p>This project could for example find use in an interactive digital archive project, helping people get a new view on famous authors. If further developed, it could become an interactive installation that lets people pretend to be talking to for example Shakespeare.</p>
 <p>The following notebook will be a step by step guide, starting with getting and preparing the data, before building and training the network and lastly trying it out on an example.</p>
 
 </div>
@@ -14620,6 +14620,7 @@ It might also be possible to apply this network to other datasets, using other a
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <p><img src="Shakespeare.png" alt="picture of William Shakespeare"></p>
+<p>Source: the picture is free to use without attribution by the pixaby content licence</p>
 <p>Image  of William Shakespeare - will the model be able to imiate his writing style?
 Let's find out!</p>
 
@@ -14644,9 +14645,9 @@ Let's find out!</p>
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>To start with generating out own text with a neural network, we need a dataset. For this example, a dataset of a Shakespeare text has been chosen.
+<p>To start with generating out own text with a neural network, we need a dataset. For this example, a dataset of Shakespeare texts has been chosen. The format of the data is a txt file, meaning it is in pure text format.
 In the following code snippet, the dataset is being imported, so we can work with it. 
-Furthermore, the library tensorflow is being imported, since it is needed to get the dataset file and it is going to be necessary for the following machine learning process
+Furthermore, the library tensorflow is being imported, since it is needed to get the dataset file and it is going to be necessary for the following machine learning process. Tensorflow is a very common library used for machine learning and building neural networks. 
 The print statement in the second code cell helps exploring the data since it prints out the first few lines of the imported data, helping users to understand what the data looks like.</p>
 
 </div>
@@ -14668,7 +14669,7 @@ The print statement in the second code cell helps exploring the data since it pr
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[1]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[4]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="nn">tf</span> 
@@ -14698,7 +14699,7 @@ The print statement in the second code cell helps exploring the data since it pr
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr">
-<pre>2023-11-29 12:04:46.152153: I tensorflow/core/platform/cpu_feature_guard.cc:182] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+<pre>2023-12-05 13:25:18.775005: I tensorflow/core/platform/cpu_feature_guard.cc:182] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
 To enable the following instructions: AVX2 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
 </pre>
 </div>
@@ -14724,7 +14725,7 @@ To enable the following instructions: AVX2 FMA, in other operations, rebuild Ten
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[2]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[5]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">shakespeare_text</span><span class="p">[:</span><span class="mi">80</span><span class="p">])</span> <span class="c1"># not relevant to machine learning but relevant to exploring the data</span>
@@ -14769,7 +14770,8 @@ Speak, speak.
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>Visualizing data does not only help with exploring and better understanding it, but also with checking wether it was imported correctly or wether everything is correct. Soemtimes the first errors can be found through checking this. Furthermore, if working with tabular data for example, it is useful to see wether there are any missing values.</p>
+<p>Visualizing data does not only help with exploring and better understanding it, but also with checking wether it was imported correctly or wether everything is correct. Soemtimes the first errors can be found through checking this. Furthermore, if working with tabular data for example, it is useful to see wether there are any missing values.
+In this case the data is in text form. As shown in the example above, which are the first 80 characters in the dataset, as indicated in the interval [:80], and they are simply the first lines in a Shakespeare play.</p>
 
 </div>
 </div>
@@ -14792,8 +14794,8 @@ Speak, speak.
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>In the following, the data is being prepared. For a neural network to work, the data often needs to have a specific form and adhere to certain rules. This is why it is important to prepare the data before feeding it into the network, to avoid errors in the machine learning process. In this case, for example, the text is first being split by character and transformed into lowercase letters, before being incoded. Encoding is necessary, because neural networks can only work with numbers, not letters, which is why the information has to be transformed into numbers.</p>
-<p>For the validation of results, the print statements are useful, als they show the form of the transformed data.</p>
+<p>In the following, the data is being prepared. For a neural network to work, the data often needs to have a specific form and adhere to certain rules. This is why it is important to prepare the data before feeding it into the network, to avoid errors in the machine learning process. In this case, for example, the text is first being split by character and transformed into lowercase letters, before being encoded. Encoding is necessary, because neural networks can only work with numbers, not letters, which is why the information has to be transformed into numbers.</p>
+<p>For the validation of results, the print statements are useful, als they show the form of the transformed data and therefore show wether the results are as expected.</p>
 
 </div>
 </div>
@@ -14816,7 +14818,8 @@ Speak, speak.
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>To encode the data, the characters in the text first need to be split and turned into lower case and then they are being vectorized becfore being incoded into numbers and made into a tensor, so tensorflow can work with it</p>
+<p>To encode the data, the characters in the text first need to be split and turned into lower case and then they are being vectorized becfore being incoded into numbers and made into a tensor, so tensorflow can work with it.
+For example the "split" by "character" is a set way of splitting the input data. It means that the input text is being split at each unicode character. The explanation for this can be found in the tensorflow documentation <a href="https://www.tensorflow.org/api_docs/python/tf/keras/layers/TextVectorization">https://www.tensorflow.org/api_docs/python/tf/keras/layers/TextVectorization</a>.</p>
 <p>The tf.keras.layers.TextVectorization layer is a keras preprocessing layer that transform natural language input into numerical data. More information on how it works and how to use the layer can be found in the tensorflow documentation <a href="https://www.tensorflow.org/api_docs/python/tf/keras/layers/TextVectorization">https://www.tensorflow.org/api_docs/python/tf/keras/layers/TextVectorization</a>.</p>
 
 </div>
@@ -14827,7 +14830,7 @@ Speak, speak.
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[3]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[6]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">text_vec_layer</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">TextVectorization</span><span class="p">(</span><span class="n">split</span><span class="o">=</span><span class="s2">"character"</span><span class="p">,</span>
@@ -14846,7 +14849,7 @@ Speak, speak.
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[4]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[7]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">text_vec_layer</span><span class="p">([</span><span class="n">shakespeare_text</span><span class="p">]))</span>
@@ -14908,7 +14911,7 @@ Speak, speak.
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[5]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[8]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">encoded</span> <span class="o">-=</span> <span class="mi">2</span>  <span class="c1"># drop tokens 0 (pad) and 1 (unknown), which we will not use</span>
@@ -14926,7 +14929,7 @@ Speak, speak.
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[6]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[9]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">n_tokens</span><span class="p">,</span> <span class="n">dataset_size</span><span class="p">)</span>
@@ -14988,7 +14991,7 @@ Speak, speak.
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[7]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[10]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">to_dataset</span><span class="p">(</span><span class="n">sequence</span><span class="p">,</span> <span class="n">length</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">32</span><span class="p">):</span>
@@ -15024,7 +15027,8 @@ Speak, speak.
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>In this part the dataset is being split into a training, validation and test set. This is done by using the indices of the encoded data. The dataset is simply split at two points to make the three sets.</p>
+<p>In this part the dataset is being split into a training, validation and test set. This is done by using the indices of the encoded data. The dataset is simply split at two points to make the three sets. 
+These three different sets are needed for different steps in the machine learning process. The training set is used to acutally train the network, after which it will be able to produce an output. The test set is then used to test the accuracy and the use of the network. After testing, the network might have to be adjusted, resulting in a new training round with the training set. This cycle can be repeated a couple of times. The validation set is then used for the final step. After repeating the trianing and testing a few times, the network might have learned the data in the test set, meaning it will be able to predict the right answer simply because it knows the information from experience and learning and not through training. Therefore, after the network is considered to be finished, with the accuracy and performance being good, the validation set is used to test the network again but on unknown data. The validation is usually only used once because its whole purpose is that it contains previously unknown data to be able to test wether the network is actually performing well or wether it simply has learned all the test data.</p>
 
 </div>
 </div>
@@ -15034,7 +15038,7 @@ Speak, speak.
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[8]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[11]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">length</span> <span class="o">=</span> <span class="mi">100</span>
@@ -15068,7 +15072,7 @@ Speak, speak.
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>In the following, the actual model is being built and trained. To do so, several layers are being added, with each having its own use.
+<p>In the following, the actual model is being built and trained. To do so, several layers are being added, with each having its own use. While understanding each layer is not necessary to understand machine learning in the context of the arts and humanities, further information on them is provided in the tensorflow documentation.
 Furthermore, the model is being compiled and the loss and accuracy are being printed when training the model, so it can be seen wether the model is performing well or not.
 In the last line, the number of epochs is being set to 10. An epoch is defined as one pass over the whole dataset. In this case the model would go over the whole dataset 10 times. (Source: <a href="https://keras.io/getting_started/faq/#what-do-sample-batch-and-epoch-mean">https://keras.io/getting_started/faq/#what-do-sample-batch-and-epoch-mean</a>)</p>
 
@@ -15091,7 +15095,7 @@ In the last line, the number of epochs is being set to 10. An epoch is defined a
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[9]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[12]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">set_seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>  <span class="c1"># extra code – ensures reproducibility on CPU</span>
@@ -15139,8 +15143,8 @@ In the last line, the number of epochs is being set to 10. An epoch is defined a
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr">
-<pre>2023-11-29 12:05:13.341855: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:422] ShuffleDatasetV3:19: Filling up shuffle buffer (this may take a while): 75997 of 100000
-2023-11-29 12:05:15.977842: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:452] Shuffle buffer filled.
+<pre>2023-12-05 13:26:09.878025: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:422] ShuffleDatasetV3:19: Filling up shuffle buffer (this may take a while): 73523 of 100000
+2023-12-05 13:26:13.204725: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:452] Shuffle buffer filled.
 </pre>
 </div>
 </div>
@@ -15152,7 +15156,7 @@ In the last line, the number of epochs is being set to 10. An epoch is defined a
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>  31247/Unknown - 1876s 60ms/step - loss: 1.3934 - accuracy: 0.5731INFO:tensorflow:Assets written to: my_shakespeare_model/assets
+<pre>  31247/Unknown - 1903s 60ms/step - loss: 1.4076 - accuracy: 0.5693INFO:tensorflow:Assets written to: my_shakespeare_model/assets
 </pre>
 </div>
 </div>
@@ -15176,7 +15180,7 @@ In the last line, the number of epochs is being set to 10. An epoch is defined a
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>31247/31247 [==============================] - 1911s 61ms/step - loss: 1.3934 - accuracy: 0.5731 - val_loss: 1.5981 - val_accuracy: 0.5345
+<pre>31247/31247 [==============================] - 1937s 62ms/step - loss: 1.4076 - accuracy: 0.5693 - val_loss: 1.6021 - val_accuracy: 0.5311
 Epoch 2/10
 </pre>
 </div>
@@ -15189,7 +15193,7 @@ Epoch 2/10
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr">
-<pre>2023-11-29 12:37:02.491466: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:422] ShuffleDatasetV3:19: Filling up shuffle buffer (this may take a while): 93625 of 100000
+<pre>2023-12-05 13:58:25.248298: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:422] ShuffleDatasetV3:19: Filling up shuffle buffer (this may take a while): 85273 of 100000
 </pre>
 </div>
 </div>
@@ -15201,7 +15205,7 @@ Epoch 2/10
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>    2/31247 [..............................] - ETA: 38:16 - loss: 1.5932 - accuracy: 0.5150   </pre>
+<pre>    2/31247 [..............................] - ETA: 33:56 - loss: 1.6284 - accuracy: 0.5108    </pre>
 </div>
 </div>
 
@@ -15212,7 +15216,7 @@ Epoch 2/10
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr">
-<pre>2023-11-29 12:37:03.192408: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:452] Shuffle buffer filled.
+<pre>2023-12-05 13:58:27.010111: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:452] Shuffle buffer filled.
 </pre>
 </div>
 </div>
@@ -15224,7 +15228,7 @@ Epoch 2/10
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>31247/31247 [==============================] - ETA: 0s - loss: 1.2941 - accuracy: 0.5966INFO:tensorflow:Assets written to: my_shakespeare_model/assets
+<pre>31247/31247 [==============================] - ETA: 0s - loss: 1.3102 - accuracy: 0.5918INFO:tensorflow:Assets written to: my_shakespeare_model/assets
 </pre>
 </div>
 </div>
@@ -15248,7 +15252,7 @@ Epoch 2/10
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>31247/31247 [==============================] - 1902s 61ms/step - loss: 1.2941 - accuracy: 0.5966 - val_loss: 1.5829 - val_accuracy: 0.5408
+<pre>31247/31247 [==============================] - 1939s 62ms/step - loss: 1.3102 - accuracy: 0.5918 - val_loss: 1.5743 - val_accuracy: 0.5383
 Epoch 3/10
 </pre>
 </div>
@@ -15261,7 +15265,7 @@ Epoch 3/10
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr">
-<pre>2023-11-29 13:08:44.274484: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:422] ShuffleDatasetV3:19: Filling up shuffle buffer (this may take a while): 70258 of 100000
+<pre>2023-12-05 14:30:44.600556: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:422] ShuffleDatasetV3:19: Filling up shuffle buffer (this may take a while): 91508 of 100000
 </pre>
 </div>
 </div>
@@ -15273,7 +15277,7 @@ Epoch 3/10
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>    3/31247 [..............................] - ETA: 34:38 - loss: 1.6381 - accuracy: 0.5042   </pre>
+<pre>    3/31247 [..............................] - ETA: 34:35 - loss: 1.6494 - accuracy: 0.5033  </pre>
 </div>
 </div>
 
@@ -15284,7 +15288,7 @@ Epoch 3/10
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr">
-<pre>2023-11-29 13:08:47.838295: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:452] Shuffle buffer filled.
+<pre>2023-12-05 14:30:45.558645: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:452] Shuffle buffer filled.
 </pre>
 </div>
 </div>
@@ -15296,31 +15300,7 @@ Epoch 3/10
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>31247/31247 [==============================] - ETA: 0s - loss: 1.2764 - accuracy: 0.6005INFO:tensorflow:Assets written to: my_shakespeare_model/assets
-</pre>
-</div>
-</div>
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr">
-<pre>INFO:tensorflow:Assets written to: my_shakespeare_model/assets
-</pre>
-</div>
-</div>
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>31247/31247 [==============================] - 1968s 63ms/step - loss: 1.2764 - accuracy: 0.6005 - val_loss: 1.5791 - val_accuracy: 0.5421
+<pre>31247/31247 [==============================] - 2032s 65ms/step - loss: 1.2919 - accuracy: 0.5957 - val_loss: 1.5683 - val_accuracy: 0.5377
 Epoch 4/10
 </pre>
 </div>
@@ -15333,7 +15313,7 @@ Epoch 4/10
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr">
-<pre>2023-11-29 13:41:32.515837: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:422] ShuffleDatasetV3:19: Filling up shuffle buffer (this may take a while): 76712 of 100000
+<pre>2023-12-05 15:04:36.469228: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:422] ShuffleDatasetV3:19: Filling up shuffle buffer (this may take a while): 92716 of 100000
 </pre>
 </div>
 </div>
@@ -15345,7 +15325,7 @@ Epoch 4/10
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>    2/31247 [..............................] - ETA: 38:05 - loss: 1.6262 - accuracy: 0.5025    </pre>
+<pre>    3/31247 [..............................] - ETA: 33:03 - loss: 1.6302 - accuracy: 0.5086  </pre>
 </div>
 </div>
 
@@ -15356,7 +15336,7 @@ Epoch 4/10
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr">
-<pre>2023-11-29 13:41:37.235630: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:452] Shuffle buffer filled.
+<pre>2023-12-05 15:04:37.310343: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:452] Shuffle buffer filled.
 </pre>
 </div>
 </div>
@@ -15368,7 +15348,7 @@ Epoch 4/10
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>31247/31247 [==============================] - ETA: 0s - loss: 1.2671 - accuracy: 0.6025INFO:tensorflow:Assets written to: my_shakespeare_model/assets
+<pre>31247/31247 [==============================] - ETA: 0s - loss: 1.2815 - accuracy: 0.5981INFO:tensorflow:Assets written to: my_shakespeare_model/assets
 </pre>
 </div>
 </div>
@@ -15392,7 +15372,7 @@ Epoch 4/10
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>31247/31247 [==============================] - 1862s 59ms/step - loss: 1.2671 - accuracy: 0.6025 - val_loss: 1.5757 - val_accuracy: 0.5433
+<pre>31247/31247 [==============================] - 2586s 82ms/step - loss: 1.2815 - accuracy: 0.5981 - val_loss: 1.5662 - val_accuracy: 0.5401
 Epoch 5/10
 </pre>
 </div>
@@ -15405,7 +15385,7 @@ Epoch 5/10
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr">
-<pre>2023-11-29 14:12:54.579760: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:422] ShuffleDatasetV3:19: Filling up shuffle buffer (this may take a while): 95445 of 100000
+<pre>2023-12-05 15:47:42.655899: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:422] ShuffleDatasetV3:19: Filling up shuffle buffer (this may take a while): 87013 of 100000
 </pre>
 </div>
 </div>
@@ -15417,7 +15397,7 @@ Epoch 5/10
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>    2/31247 [..............................] - ETA: 38:21 - loss: 1.6216 - accuracy: 0.5109   </pre>
+<pre>    2/31247 [..............................] - ETA: 34:35 - loss: 1.5947 - accuracy: 0.5191    </pre>
 </div>
 </div>
 
@@ -15428,7 +15408,7 @@ Epoch 5/10
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr">
-<pre>2023-11-29 14:12:55.114123: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:452] Shuffle buffer filled.
+<pre>2023-12-05 15:47:44.154260: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:452] Shuffle buffer filled.
 </pre>
 </div>
 </div>
@@ -15440,7 +15420,320 @@ Epoch 5/10
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>28077/31247 [=========================&gt;....] - ETA: 3:11 - loss: 1.2623 - accuracy: 0.6037</pre>
+<pre>31247/31247 [==============================] - ETA: 0s - loss: 1.2756 - accuracy: 0.5993INFO:tensorflow:Assets written to: my_shakespeare_model/assets
+</pre>
+</div>
+</div>
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr">
+<pre>INFO:tensorflow:Assets written to: my_shakespeare_model/assets
+</pre>
+</div>
+</div>
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>31247/31247 [==============================] - 1840s 59ms/step - loss: 1.2756 - accuracy: 0.5993 - val_loss: 1.5670 - val_accuracy: 0.5424
+Epoch 6/10
+</pre>
+</div>
+</div>
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr">
+<pre>2023-12-05 16:18:22.742295: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:422] ShuffleDatasetV3:19: Filling up shuffle buffer (this may take a while): 96521 of 100000
+</pre>
+</div>
+</div>
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>    3/31247 [..............................] - ETA: 28:34 - loss: 1.5632 - accuracy: 0.5324  </pre>
+</div>
+</div>
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr">
+<pre>2023-12-05 16:18:23.129574: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:452] Shuffle buffer filled.
+</pre>
+</div>
+</div>
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>31247/31247 [==============================] - ETA: 0s - loss: 1.2714 - accuracy: 0.6003INFO:tensorflow:Assets written to: my_shakespeare_model/assets
+</pre>
+</div>
+</div>
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr">
+<pre>INFO:tensorflow:Assets written to: my_shakespeare_model/assets
+</pre>
+</div>
+</div>
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>31247/31247 [==============================] - 3347s 107ms/step - loss: 1.2714 - accuracy: 0.6003 - val_loss: 1.5595 - val_accuracy: 0.5439
+Epoch 7/10
+</pre>
+</div>
+</div>
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr">
+<pre>2023-12-05 17:14:18.176906: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:422] ShuffleDatasetV3:19: Filling up shuffle buffer (this may take a while): 91923 of 100000
+</pre>
+</div>
+</div>
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>    3/31247 [..............................] - ETA: 33:48 - loss: 1.5352 - accuracy: 0.5353  </pre>
+</div>
+</div>
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr">
+<pre>2023-12-05 17:14:19.117361: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:452] Shuffle buffer filled.
+</pre>
+</div>
+</div>
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>31247/31247 [==============================] - 1987s 63ms/step - loss: 1.2683 - accuracy: 0.6010 - val_loss: 1.5552 - val_accuracy: 0.5427
+Epoch 8/10
+</pre>
+</div>
+</div>
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr">
+<pre>2023-12-05 17:47:25.037778: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:422] ShuffleDatasetV3:19: Filling up shuffle buffer (this may take a while): 88024 of 100000
+</pre>
+</div>
+</div>
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>    2/31247 [..............................] - ETA: 41:08 - loss: 1.5478 - accuracy: 0.5281    </pre>
+</div>
+</div>
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr">
+<pre>2023-12-05 17:47:26.494058: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:452] Shuffle buffer filled.
+</pre>
+</div>
+</div>
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>31247/31247 [==============================] - 1942s 62ms/step - loss: 1.2650 - accuracy: 0.6018 - val_loss: 1.5642 - val_accuracy: 0.5430
+Epoch 9/10
+</pre>
+</div>
+</div>
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr">
+<pre>2023-12-05 18:19:46.918216: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:422] ShuffleDatasetV3:19: Filling up shuffle buffer (this may take a while): 92256 of 100000
+</pre>
+</div>
+</div>
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>    2/31247 [..............................] - ETA: 35:32 - loss: 1.5793 - accuracy: 0.5241   </pre>
+</div>
+</div>
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr">
+<pre>2023-12-05 18:19:47.810524: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:452] Shuffle buffer filled.
+</pre>
+</div>
+</div>
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>31247/31247 [==============================] - ETA: 0s - loss: 1.2627 - accuracy: 0.6023INFO:tensorflow:Assets written to: my_shakespeare_model/assets
+</pre>
+</div>
+</div>
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr">
+<pre>INFO:tensorflow:Assets written to: my_shakespeare_model/assets
+</pre>
+</div>
+</div>
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>31247/31247 [==============================] - 1902s 61ms/step - loss: 1.2627 - accuracy: 0.6023 - val_loss: 1.5594 - val_accuracy: 0.5447
+Epoch 10/10
+</pre>
+</div>
+</div>
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr">
+<pre>2023-12-05 18:51:29.266305: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:422] ShuffleDatasetV3:19: Filling up shuffle buffer (this may take a while): 80121 of 100000
+</pre>
+</div>
+</div>
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>    2/31247 [..............................] - ETA: 32:35 - loss: 1.5870 - accuracy: 0.5220    </pre>
+</div>
+</div>
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr">
+<pre>2023-12-05 18:51:31.681105: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:452] Shuffle buffer filled.
+</pre>
+</div>
+</div>
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>31247/31247 [==============================] - 2006s 64ms/step - loss: 1.2648 - accuracy: 0.6018 - val_loss: 1.5621 - val_accuracy: 0.5429
+</pre>
 </div>
 </div>
 
@@ -15469,7 +15762,7 @@ Epoch 5/10
 <p>Since it is a very large dataset, the training takes quite a long times. Therefore it is helpful to use a more powerful device (if possible) and to make sure that the device is not running out of power, since that would mean starting the process all over again. Furthermore it is important to take the time it takes to train a model into account, when planning a project that includes machine learning. Additionally, the notebook tends to throw resizing buffer errors when trying to train it again leading to an even longer time effort. 
 <img src="screenshots/Error.png" alt="image of error message"></p>
 <p>Some research into the error lead to the conclusion that when the error message occurs in the terminal, the training is actually still running, but the jupyter notebook is not showing any output anymore. Therefore, the error is probably more with jupyter notebook instead of the actual code. Several people in a github thread have experienced similar issues, which is also were the conclusion about this problem are stemming from <a href="https://github.com/tensorflow/tensorflow/issues/60309">https://github.com/tensorflow/tensorflow/issues/60309</a>. In the terminal, it can still be observed when the next epoch is starting, the jupyter notebook interface simply is not showing the output anymore. After the training has finished, the changes have to be saved and then the notebook needs to be shutdown and reopened. After that, the trained model can be used in the further process and the following cells will be showing output again, which was not possible before restarting the notebook.
-Running the training on a laptop for example took 5.5 hours. But about 10 additional hours were needed because of failed training attempts. 
+Running the training on a laptop for example took 5.5 hours. But about 20 additional hours were needed because of failed training attempts. In the last attempts, by coincidence all of the training data was actually shown in the output of the notebook. Through this it was possible to observe that the accuracy went up to 0.6. To be able to oberserve the development on the accuracy and loss was the reason to attempt the training several times, inspite of the time needed to do so. The reason for this is that the accuracy is very telling for how well a model will perform. 
 While the time needed for each epoch can differ, it is pretty similar in this training example, always varying around 1850 and 2000 seconds. In the training excerpt, the epochs and time needed for them are circled in pink, acting as an example of the time needed for training the model. Shown are the times of epoch 1, 2 and 3. 
 <img src="screenshots/Training_time.png" alt="time needed for epochs"></p>
 <p>In general it can be observed, that the accuracy is getting higher from epoch to epoch, but it is starting at around 0.57, which for me was very surprising, since I had expected for it to start much higher, as in the machine learning by example from start to end it had already startd at around 0.94. This leads to the conclusion, that the model could maybe use some work to make it more accurate, but at the same time the accuracy is incresing during the training process, meaning the model is already a good start. How well it actually works will be showed later in the notebook, when testing it on some example cases. The accuracy can be seen in the follwing excerpt of the training output:</p>
@@ -15494,7 +15787,7 @@ While the time needed for each epoch can differ, it is pretty similar in this tr
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[22]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[13]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">shakespeare_model</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">Sequential</span><span class="p">([</span>
@@ -15529,9 +15822,9 @@ While the time needed for each epoch can differ, it is pretty similar in this tr
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <p>The experience witht the time needed to execute all the code and train the model, lead to a peer discussion about the duration of the trianing and its practicality.
 In the arts and humanities, projects might have limited resources - in computing power, money or time, or all of the above. Therefore it is important to think about how models might be made more time efficient or wether it would be useful for institutions to invest in the needed resources, be it computing power or time. 
-Whenenver using AI in the arts and humanities, it is important to compare the use of resources and the performance of the model. Decreasing the needed time for example, might impact the accuracy of the model negatively. This leads to the conclusion that for each project, a threshhold must be set of a required balance between resources and performance. Project do not have infinite resources, but at the same time, a certain accuracy of the model is needed to produce usable results.
+Whenenver using AI in the arts and humanities, it is important to compare the use of resources and the performance of the model. Decreasing the needed time for example, might impact the accuracy of the model negatively. This leads to the conclusion that for each project, a threshhold must be set of a required balance between resources and performance. Project do not have infinite resources, but at the same time, a certain accuracy of the model is needed to produce usable results. Another option would be to reduce the size of the data fed to the model, since each epoch means going over each data point in the training set, so reducing the size of the training set means each epoch takes less time because there is less data to go over. But this would mean that the model would have less data to train on, which could also result in a lower accuracy and worse performance of the model. 
 It is recommended to think aobut this balance before starting an AI project in the field.</p>
-<p>In this specific case for example, the accuracy was 0.57, which was lower than expected. It might be increased by investing more time by for example increasing the amount of epochs. But this would also result in a higher time effort, meaning that it would cost more resources.</p>
+<p>In this specific case for example, the accuracy was 0.57, which was lower than expected. The highest accuracy stated was 0.6 after the tenth epoch. It might be increased by investing more time by for example increasing the amount of epochs. But this would also result in a higher time effort, meaning that it would cost more resources.</p>
 <p>Another factor could be the batch size. In 2016, user Lucas Ramadan listed some general rules about batch size on a thread on stackoverflow. A larger batch size might therefore help to make the training process faster, but not in all cases. <a href="https://stackoverflow.com/questions/35050753/how-big-should-batch-size-and-number-of-epochs-be-when-fitting-a-model">https://stackoverflow.com/questions/35050753/how-big-should-batch-size-and-number-of-epochs-be-when-fitting-a-model</a></p>
 
 </div>
@@ -15576,7 +15869,7 @@ It is recommended to think aobut this balance before starting an AI project in t
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[23]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[14]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">y_proba</span> <span class="o">=</span> <span class="n">shakespeare_model</span><span class="o">.</span><span class="n">predict</span><span class="p">([</span><span class="s2">"To be or not to b"</span><span class="p">])[</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span>
@@ -15603,7 +15896,7 @@ It is recommended to think aobut this balance before starting an AI project in t
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>1/1 [==============================] - 1s 1s/step
+<pre>1/1 [==============================] - 1s 645ms/step
 </pre>
 </div>
 </div>
@@ -15611,7 +15904,7 @@ It is recommended to think aobut this balance before starting an AI project in t
 <div class="jp-OutputArea-child">
 
     
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[23]:</div>
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[14]:</div>
 
 
 
@@ -15631,7 +15924,7 @@ It is recommended to think aobut this balance before starting an AI project in t
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[24]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[15]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># help with visualization </span>
@@ -15657,14 +15950,16 @@ It is recommended to think aobut this balance before starting an AI project in t
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>[2.1129138e-06 8.5561556e-01 2.2224115e-11 2.1224868e-02 3.9113373e-02
- 3.6693189e-02 4.4674958e-10 4.6583000e-06 9.9596856e-03 2.9044875e-07
- 4.9154664e-07 1.4862280e-02 5.6615965e-09 1.4430948e-02 3.1604199e-07
- 8.0804434e-03 8.7489385e-09 1.6814655e-08 2.3241416e-11 1.0369784e-08
- 2.8587053e-07 4.2391011e-06 4.2892214e-08 4.4083540e-10 1.4786215e-12
- 2.5570140e-11 1.4088186e-08 3.6063730e-06 1.9268016e-09 4.4550044e-10
- 1.8006867e-08 3.2127401e-09 3.5330561e-06 8.2488816e-12 1.3907974e-11
- 6.3178342e-13 2.0576040e-14 1.7938722e-15 2.4389968e-20] tf.Tensor(1, shape=(), dtype=int64)
+<pre>[3.81815255e-07 8.29996526e-01 2.15698881e-09 3.85690033e-02
+ 4.07252945e-02 1.97646618e-02 2.71154789e-07 3.67000139e-05
+ 2.05793176e-02 1.43030064e-07 1.70218040e-09 1.40837375e-02
+ 1.14564556e-11 1.99518856e-02 2.14517248e-09 1.62750613e-02
+ 1.49889928e-07 4.80516427e-08 5.28882449e-09 1.31076314e-08
+ 1.29335842e-09 4.24612381e-06 5.83563331e-09 1.67658354e-09
+ 8.16305523e-10 3.47818855e-07 1.25215207e-08 3.91655931e-07
+ 1.78301940e-09 4.15820400e-09 8.55523263e-10 1.48098214e-10
+ 1.76902915e-09 8.72020078e-12 1.18828866e-05 3.74330775e-12
+ 9.60318522e-16 2.46457008e-17 1.34319074e-20] tf.Tensor(1, shape=(), dtype=int64)
 </pre>
 </div>
 </div>
@@ -15702,7 +15997,7 @@ It is recommended to think aobut this balance before starting an AI project in t
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[25]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[16]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">log_probas</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">math</span><span class="o">.</span><span class="n">log</span><span class="p">([[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">]])</span>  <span class="c1"># probas = 50%, 40%, and 10%</span>
@@ -15725,7 +16020,7 @@ It is recommended to think aobut this balance before starting an AI project in t
 <div class="jp-OutputArea-child">
 
     
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[25]:</div>
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[16]:</div>
 
 
 
@@ -15757,7 +16052,7 @@ It is recommended to think aobut this balance before starting an AI project in t
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[26]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[17]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">next_char</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">temperature</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
@@ -15789,7 +16084,7 @@ It is recommended to think aobut this balance before starting an AI project in t
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[27]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[18]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">extend_text</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">n_chars</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">temperature</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
@@ -15819,7 +16114,7 @@ It is recommended to think aobut this balance before starting an AI project in t
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[28]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[19]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">set_seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>  <span class="c1"># extra code – ensures reproducibility on CPU</span>
@@ -15835,7 +16130,7 @@ It is recommended to think aobut this balance before starting an AI project in t
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[29]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[20]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># example 1</span>
@@ -15861,57 +16156,57 @@ It is recommended to think aobut this balance before starting an AI project in t
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>1/1 [==============================] - 0s 154ms/step
-1/1 [==============================] - 0s 35ms/step
-1/1 [==============================] - 0s 35ms/step
+<pre>1/1 [==============================] - 0s 150ms/step
+1/1 [==============================] - 0s 32ms/step
+1/1 [==============================] - 0s 32ms/step
+1/1 [==============================] - 0s 37ms/step
+1/1 [==============================] - 0s 40ms/step
+1/1 [==============================] - 0s 34ms/step
+1/1 [==============================] - 0s 29ms/step
+1/1 [==============================] - 0s 32ms/step
+1/1 [==============================] - 0s 30ms/step
 1/1 [==============================] - 0s 33ms/step
+1/1 [==============================] - 0s 29ms/step
+1/1 [==============================] - 0s 30ms/step
+1/1 [==============================] - 0s 30ms/step
+1/1 [==============================] - 0s 30ms/step
+1/1 [==============================] - 0s 32ms/step
+1/1 [==============================] - 0s 32ms/step
+1/1 [==============================] - 0s 30ms/step
+1/1 [==============================] - 0s 33ms/step
+1/1 [==============================] - 0s 32ms/step
+1/1 [==============================] - 0s 30ms/step
+1/1 [==============================] - 0s 30ms/step
+1/1 [==============================] - 0s 29ms/step
+1/1 [==============================] - 0s 30ms/step
+1/1 [==============================] - 0s 30ms/step
+1/1 [==============================] - 0s 30ms/step
+1/1 [==============================] - 0s 30ms/step
+1/1 [==============================] - 0s 30ms/step
+1/1 [==============================] - 0s 29ms/step
+1/1 [==============================] - 0s 31ms/step
+1/1 [==============================] - 0s 31ms/step
+1/1 [==============================] - 0s 31ms/step
+1/1 [==============================] - 0s 30ms/step
+1/1 [==============================] - 0s 30ms/step
+1/1 [==============================] - 0s 31ms/step
+1/1 [==============================] - 0s 31ms/step
+1/1 [==============================] - 0s 34ms/step
+1/1 [==============================] - 0s 30ms/step
+1/1 [==============================] - 0s 31ms/step
+1/1 [==============================] - 0s 31ms/step
 1/1 [==============================] - 0s 32ms/step
 1/1 [==============================] - 0s 31ms/step
-1/1 [==============================] - 0s 37ms/step
-1/1 [==============================] - 0s 33ms/step
-1/1 [==============================] - 0s 32ms/step
-1/1 [==============================] - 0s 40ms/step
-1/1 [==============================] - 0s 37ms/step
-1/1 [==============================] - 0s 36ms/step
-1/1 [==============================] - 0s 32ms/step
-1/1 [==============================] - 0s 34ms/step
-1/1 [==============================] - 0s 49ms/step
-1/1 [==============================] - 0s 60ms/step
-1/1 [==============================] - 0s 55ms/step
-1/1 [==============================] - 0s 34ms/step
-1/1 [==============================] - 0s 32ms/step
-1/1 [==============================] - 0s 32ms/step
-1/1 [==============================] - 0s 50ms/step
-1/1 [==============================] - 0s 49ms/step
-1/1 [==============================] - 0s 51ms/step
-1/1 [==============================] - 0s 39ms/step
+1/1 [==============================] - 0s 35ms/step
+1/1 [==============================] - 0s 31ms/step
+1/1 [==============================] - 0s 30ms/step
 1/1 [==============================] - 0s 33ms/step
 1/1 [==============================] - 0s 33ms/step
-1/1 [==============================] - 0s 38ms/step
-1/1 [==============================] - 0s 57ms/step
-1/1 [==============================] - 0s 35ms/step
-1/1 [==============================] - 0s 36ms/step
-1/1 [==============================] - 0s 35ms/step
+1/1 [==============================] - 0s 31ms/step
+1/1 [==============================] - 0s 31ms/step
 1/1 [==============================] - 0s 32ms/step
-1/1 [==============================] - 0s 33ms/step
-1/1 [==============================] - 0s 35ms/step
-1/1 [==============================] - 0s 37ms/step
-1/1 [==============================] - 0s 32ms/step
-1/1 [==============================] - 0s 53ms/step
-1/1 [==============================] - 0s 35ms/step
-1/1 [==============================] - 0s 37ms/step
-1/1 [==============================] - 0s 53ms/step
-1/1 [==============================] - 0s 44ms/step
-1/1 [==============================] - 0s 54ms/step
-1/1 [==============================] - 0s 34ms/step
-1/1 [==============================] - 0s 35ms/step
-1/1 [==============================] - 0s 32ms/step
-1/1 [==============================] - 0s 39ms/step
-1/1 [==============================] - 0s 35ms/step
-1/1 [==============================] - 0s 36ms/step
-1/1 [==============================] - 0s 34ms/step
-1/1 [==============================] - 0s 33ms/step
-To be or not to be so longer than you shall be so of the strange fro
+1/1 [==============================] - 0s 31ms/step
+To be or not to be a father for the duke is a man that i say, and th
 </pre>
 </div>
 </div>
@@ -15925,7 +16220,7 @@ To be or not to be so longer than you shall be so of the strange fro
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[30]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[21]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># example 2</span>
@@ -15951,58 +16246,58 @@ To be or not to be so longer than you shall be so of the strange fro
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>1/1 [==============================] - 0s 34ms/step
-1/1 [==============================] - 0s 32ms/step
-1/1 [==============================] - 0s 31ms/step
-1/1 [==============================] - 0s 33ms/step
-1/1 [==============================] - 0s 31ms/step
-1/1 [==============================] - 0s 31ms/step
-1/1 [==============================] - 0s 31ms/step
-1/1 [==============================] - 0s 33ms/step
+<pre>1/1 [==============================] - 0s 31ms/step
 1/1 [==============================] - 0s 30ms/step
-1/1 [==============================] - 0s 33ms/step
-1/1 [==============================] - 0s 33ms/step
-1/1 [==============================] - 0s 35ms/step
-1/1 [==============================] - 0s 33ms/step
-1/1 [==============================] - 0s 34ms/step
-1/1 [==============================] - 0s 33ms/step
-1/1 [==============================] - 0s 34ms/step
+1/1 [==============================] - 0s 29ms/step
+1/1 [==============================] - 0s 31ms/step
+1/1 [==============================] - 0s 29ms/step
+1/1 [==============================] - 0s 29ms/step
+1/1 [==============================] - 0s 29ms/step
+1/1 [==============================] - 0s 30ms/step
 1/1 [==============================] - 0s 30ms/step
 1/1 [==============================] - 0s 30ms/step
 1/1 [==============================] - 0s 29ms/step
 1/1 [==============================] - 0s 30ms/step
-1/1 [==============================] - 0s 31ms/step
-1/1 [==============================] - 0s 38ms/step
-1/1 [==============================] - 0s 45ms/step
-1/1 [==============================] - 0s 46ms/step
-1/1 [==============================] - 0s 74ms/step
-1/1 [==============================] - 0s 48ms/step
-1/1 [==============================] - 0s 45ms/step
-1/1 [==============================] - 0s 57ms/step
-1/1 [==============================] - 0s 35ms/step
+1/1 [==============================] - 0s 30ms/step
+1/1 [==============================] - 0s 30ms/step
+1/1 [==============================] - 0s 30ms/step
 1/1 [==============================] - 0s 29ms/step
-1/1 [==============================] - 0s 30ms/step
-1/1 [==============================] - 0s 32ms/step
-1/1 [==============================] - 0s 31ms/step
-1/1 [==============================] - 0s 34ms/step
-1/1 [==============================] - 0s 34ms/step
+1/1 [==============================] - 0s 33ms/step
 1/1 [==============================] - 0s 30ms/step
 1/1 [==============================] - 0s 31ms/step
+1/1 [==============================] - 0s 30ms/step
+1/1 [==============================] - 0s 30ms/step
+1/1 [==============================] - 0s 29ms/step
+1/1 [==============================] - 0s 33ms/step
+1/1 [==============================] - 0s 31ms/step
+1/1 [==============================] - 0s 39ms/step
 1/1 [==============================] - 0s 37ms/step
+1/1 [==============================] - 0s 31ms/step
+1/1 [==============================] - 0s 31ms/step
+1/1 [==============================] - 0s 35ms/step
+1/1 [==============================] - 0s 31ms/step
+1/1 [==============================] - 0s 32ms/step
+1/1 [==============================] - 0s 38ms/step
+1/1 [==============================] - 0s 37ms/step
+1/1 [==============================] - 0s 32ms/step
+1/1 [==============================] - 0s 40ms/step
+1/1 [==============================] - 0s 34ms/step
+1/1 [==============================] - 0s 36ms/step
+1/1 [==============================] - 0s 39ms/step
+1/1 [==============================] - 0s 38ms/step
+1/1 [==============================] - 0s 34ms/step
+1/1 [==============================] - 0s 36ms/step
 1/1 [==============================] - 0s 33ms/step
 1/1 [==============================] - 0s 34ms/step
-1/1 [==============================] - 0s 33ms/step
-1/1 [==============================] - 0s 31ms/step
-1/1 [==============================] - 0s 31ms/step
-1/1 [==============================] - 0s 30ms/step
-1/1 [==============================] - 0s 33ms/step
-1/1 [==============================] - 0s 35ms/step
-1/1 [==============================] - 0s 50ms/step
+1/1 [==============================] - 0s 47ms/step
+1/1 [==============================] - 0s 47ms/step
+1/1 [==============================] - 0s 43ms/step
 1/1 [==============================] - 0s 45ms/step
-1/1 [==============================] - 0s 49ms/step
+1/1 [==============================] - 0s 38ms/step
+1/1 [==============================] - 0s 32ms/step
 1/1 [==============================] - 0s 45ms/step
-To be or not to betweeper than up?
-what&#39;s my honour frame the fire, 
+To be or not to be good and cut wrong,
+for was not acquainted you co
 </pre>
 </div>
 </div>
@@ -16016,7 +16311,7 @@ what&#39;s my honour frame the fire,
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[37]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[22]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># example 3</span>
@@ -16042,57 +16337,58 @@ what&#39;s my honour frame the fire,
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>1/1 [==============================] - 0s 41ms/step
-1/1 [==============================] - 0s 32ms/step
-1/1 [==============================] - 0s 40ms/step
+<pre>1/1 [==============================] - 0s 32ms/step
 1/1 [==============================] - 0s 31ms/step
-1/1 [==============================] - 0s 31ms/step
-1/1 [==============================] - 0s 32ms/step
-1/1 [==============================] - 0s 49ms/step
-1/1 [==============================] - 0s 55ms/step
-1/1 [==============================] - 0s 50ms/step
-1/1 [==============================] - 0s 43ms/step
+1/1 [==============================] - 0s 34ms/step
 1/1 [==============================] - 0s 38ms/step
-1/1 [==============================] - 0s 53ms/step
-1/1 [==============================] - 0s 32ms/step
-1/1 [==============================] - 0s 55ms/step
-1/1 [==============================] - 0s 43ms/step
-1/1 [==============================] - 0s 38ms/step
+1/1 [==============================] - 0s 36ms/step
 1/1 [==============================] - 0s 35ms/step
+1/1 [==============================] - 0s 32ms/step
+1/1 [==============================] - 0s 33ms/step
+1/1 [==============================] - 0s 33ms/step
+1/1 [==============================] - 0s 30ms/step
+1/1 [==============================] - 0s 34ms/step
 1/1 [==============================] - 0s 47ms/step
-1/1 [==============================] - 0s 48ms/step
+1/1 [==============================] - 0s 47ms/step
+1/1 [==============================] - 0s 41ms/step
+1/1 [==============================] - 0s 42ms/step
+1/1 [==============================] - 0s 44ms/step
+1/1 [==============================] - 0s 40ms/step
+1/1 [==============================] - 0s 44ms/step
 1/1 [==============================] - 0s 34ms/step
-1/1 [==============================] - 0s 37ms/step
-1/1 [==============================] - 0s 32ms/step
 1/1 [==============================] - 0s 31ms/step
 1/1 [==============================] - 0s 30ms/step
-1/1 [==============================] - 0s 43ms/step
-1/1 [==============================] - 0s 49ms/step
+1/1 [==============================] - 0s 30ms/step
 1/1 [==============================] - 0s 34ms/step
-1/1 [==============================] - 0s 36ms/step
-1/1 [==============================] - 0s 35ms/step
-1/1 [==============================] - 0s 32ms/step
+1/1 [==============================] - 0s 31ms/step
+1/1 [==============================] - 0s 31ms/step
+1/1 [==============================] - 0s 31ms/step
+1/1 [==============================] - 0s 31ms/step
+1/1 [==============================] - 0s 31ms/step
 1/1 [==============================] - 0s 31ms/step
 1/1 [==============================] - 0s 30ms/step
-1/1 [==============================] - 0s 30ms/step
-1/1 [==============================] - 0s 32ms/step
-1/1 [==============================] - 0s 31ms/step
-1/1 [==============================] - 0s 37ms/step
-1/1 [==============================] - 0s 54ms/step
-1/1 [==============================] - 0s 49ms/step
-1/1 [==============================] - 0s 43ms/step
-1/1 [==============================] - 0s 32ms/step
-1/1 [==============================] - 0s 32ms/step
-1/1 [==============================] - 0s 35ms/step
-1/1 [==============================] - 0s 65ms/step
-1/1 [==============================] - 0s 52ms/step
-1/1 [==============================] - 0s 53ms/step
-1/1 [==============================] - 0s 36ms/step
-1/1 [==============================] - 0s 33ms/step
 1/1 [==============================] - 0s 33ms/step
 1/1 [==============================] - 0s 32ms/step
+1/1 [==============================] - 0s 33ms/step
+1/1 [==============================] - 0s 32ms/step
+1/1 [==============================] - 0s 32ms/step
+1/1 [==============================] - 0s 41ms/step
+1/1 [==============================] - 0s 46ms/step
+1/1 [==============================] - 0s 42ms/step
+1/1 [==============================] - 0s 39ms/step
+1/1 [==============================] - 0s 42ms/step
+1/1 [==============================] - 0s 38ms/step
+1/1 [==============================] - 0s 41ms/step
+1/1 [==============================] - 0s 45ms/step
+1/1 [==============================] - 0s 45ms/step
+1/1 [==============================] - 0s 38ms/step
+1/1 [==============================] - 0s 38ms/step
+1/1 [==============================] - 0s 49ms/step
+1/1 [==============================] - 0s 38ms/step
 1/1 [==============================] - 0s 35ms/step
-To be or not to be.s?,uf:mya,blqttobcaii.r;d:ngat!r!!ronv:z:z.hyd$s:
+1/1 [==============================] - 0s 36ms/step
+To be or not to bef ,mt&#39;&amp;o3gpadm-$
+wh!nse?pws3est--vgerdjw?c-yjewznq
 </pre>
 </div>
 </div>
@@ -16142,7 +16438,7 @@ To be or not to be.s?,uf:mya,blqttobcaii.r;d:ngat!r!!ronv:z:z.hyd$s:
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[32]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[23]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># example 4</span>
@@ -16168,60 +16464,57 @@ To be or not to be.s?,uf:mya,blqttobcaii.r;d:ngat!r!!ronv:z:z.hyd$s:
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>1/1 [==============================] - 0s 35ms/step
+<pre>1/1 [==============================] - 0s 34ms/step
 1/1 [==============================] - 0s 31ms/step
-1/1 [==============================] - 0s 39ms/step
-1/1 [==============================] - 0s 31ms/step
-1/1 [==============================] - 0s 30ms/step
 1/1 [==============================] - 0s 34ms/step
-1/1 [==============================] - 0s 41ms/step
-1/1 [==============================] - 0s 48ms/step
-1/1 [==============================] - 0s 48ms/step
-1/1 [==============================] - 0s 33ms/step
-1/1 [==============================] - 0s 51ms/step
 1/1 [==============================] - 0s 46ms/step
-1/1 [==============================] - 0s 33ms/step
-1/1 [==============================] - 0s 43ms/step
-1/1 [==============================] - 0s 47ms/step
-1/1 [==============================] - 0s 37ms/step
-1/1 [==============================] - 0s 33ms/step
 1/1 [==============================] - 0s 32ms/step
-1/1 [==============================] - 0s 47ms/step
+1/1 [==============================] - 0s 31ms/step
+1/1 [==============================] - 0s 31ms/step
+1/1 [==============================] - 0s 30ms/step
+1/1 [==============================] - 0s 32ms/step
+1/1 [==============================] - 0s 30ms/step
+1/1 [==============================] - 0s 31ms/step
+1/1 [==============================] - 0s 30ms/step
+1/1 [==============================] - 0s 32ms/step
+1/1 [==============================] - 0s 33ms/step
 1/1 [==============================] - 0s 38ms/step
-1/1 [==============================] - 0s 30ms/step
-1/1 [==============================] - 0s 31ms/step
-1/1 [==============================] - 0s 31ms/step
-1/1 [==============================] - 0s 32ms/step
-1/1 [==============================] - 0s 30ms/step
-1/1 [==============================] - 0s 34ms/step
-1/1 [==============================] - 0s 30ms/step
-1/1 [==============================] - 0s 31ms/step
-1/1 [==============================] - 0s 30ms/step
-1/1 [==============================] - 0s 30ms/step
-1/1 [==============================] - 0s 34ms/step
-1/1 [==============================] - 0s 32ms/step
 1/1 [==============================] - 0s 32ms/step
 1/1 [==============================] - 0s 31ms/step
-1/1 [==============================] - 0s 31ms/step
-1/1 [==============================] - 0s 32ms/step
-1/1 [==============================] - 0s 31ms/step
-1/1 [==============================] - 0s 32ms/step
-1/1 [==============================] - 0s 31ms/step
-1/1 [==============================] - 0s 31ms/step
-1/1 [==============================] - 0s 31ms/step
-1/1 [==============================] - 0s 30ms/step
-1/1 [==============================] - 0s 30ms/step
-1/1 [==============================] - 0s 32ms/step
-1/1 [==============================] - 0s 32ms/step
-1/1 [==============================] - 0s 32ms/step
-1/1 [==============================] - 0s 32ms/step
 1/1 [==============================] - 0s 33ms/step
-1/1 [==============================] - 0s 56ms/step
-1/1 [==============================] - 0s 44ms/step
-To be or not to be so
-of our love in the king of her business.
-
-luci
+1/1 [==============================] - 0s 37ms/step
+1/1 [==============================] - 0s 58ms/step
+1/1 [==============================] - 0s 48ms/step
+1/1 [==============================] - 0s 47ms/step
+1/1 [==============================] - 0s 48ms/step
+1/1 [==============================] - 0s 38ms/step
+1/1 [==============================] - 0s 32ms/step
+1/1 [==============================] - 0s 54ms/step
+1/1 [==============================] - 0s 47ms/step
+1/1 [==============================] - 0s 49ms/step
+1/1 [==============================] - 0s 42ms/step
+1/1 [==============================] - 0s 33ms/step
+1/1 [==============================] - 0s 52ms/step
+1/1 [==============================] - 0s 53ms/step
+1/1 [==============================] - 0s 35ms/step
+1/1 [==============================] - 0s 52ms/step
+1/1 [==============================] - 0s 50ms/step
+1/1 [==============================] - 0s 36ms/step
+1/1 [==============================] - 0s 42ms/step
+1/1 [==============================] - 0s 36ms/step
+1/1 [==============================] - 0s 32ms/step
+1/1 [==============================] - 0s 53ms/step
+1/1 [==============================] - 0s 61ms/step
+1/1 [==============================] - 0s 48ms/step
+1/1 [==============================] - 0s 32ms/step
+1/1 [==============================] - 0s 37ms/step
+1/1 [==============================] - 0s 45ms/step
+1/1 [==============================] - 0s 54ms/step
+1/1 [==============================] - 0s 49ms/step
+1/1 [==============================] - 0s 47ms/step
+1/1 [==============================] - 0s 47ms/step
+1/1 [==============================] - 0s 43ms/step
+To be or not to be a man of heaven from his first and be so, good fa
 </pre>
 </div>
 </div>
@@ -16235,7 +16528,7 @@ luci
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[33]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[24]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># example 6</span>
@@ -16261,60 +16554,61 @@ luci
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>1/1 [==============================] - 0s 31ms/step
-1/1 [==============================] - 0s 29ms/step
-1/1 [==============================] - 0s 31ms/step
-1/1 [==============================] - 0s 34ms/step
-1/1 [==============================] - 0s 30ms/step
-1/1 [==============================] - 0s 30ms/step
-1/1 [==============================] - 0s 32ms/step
-1/1 [==============================] - 0s 42ms/step
-1/1 [==============================] - 0s 48ms/step
-1/1 [==============================] - 0s 40ms/step
-1/1 [==============================] - 0s 32ms/step
+<pre>1/1 [==============================] - 0s 37ms/step
+1/1 [==============================] - 0s 33ms/step
+1/1 [==============================] - 0s 33ms/step
 1/1 [==============================] - 0s 35ms/step
+1/1 [==============================] - 0s 37ms/step
+1/1 [==============================] - 0s 35ms/step
+1/1 [==============================] - 0s 31ms/step
+1/1 [==============================] - 0s 37ms/step
+1/1 [==============================] - 0s 31ms/step
+1/1 [==============================] - 0s 52ms/step
 1/1 [==============================] - 0s 43ms/step
-1/1 [==============================] - 0s 32ms/step
-1/1 [==============================] - 0s 30ms/step
-1/1 [==============================] - 0s 31ms/step
-1/1 [==============================] - 0s 30ms/step
-1/1 [==============================] - 0s 31ms/step
-1/1 [==============================] - 0s 32ms/step
-1/1 [==============================] - 0s 31ms/step
-1/1 [==============================] - 0s 31ms/step
-1/1 [==============================] - 0s 31ms/step
-1/1 [==============================] - 0s 31ms/step
-1/1 [==============================] - 0s 31ms/step
-1/1 [==============================] - 0s 31ms/step
-1/1 [==============================] - 0s 32ms/step
-1/1 [==============================] - 0s 33ms/step
-1/1 [==============================] - 0s 34ms/step
-1/1 [==============================] - 0s 31ms/step
-1/1 [==============================] - 0s 32ms/step
-1/1 [==============================] - 0s 32ms/step
-1/1 [==============================] - 0s 32ms/step
-1/1 [==============================] - 0s 33ms/step
-1/1 [==============================] - 0s 32ms/step
-1/1 [==============================] - 0s 32ms/step
-1/1 [==============================] - 0s 30ms/step
+1/1 [==============================] - 0s 37ms/step
+1/1 [==============================] - 0s 57ms/step
 1/1 [==============================] - 0s 35ms/step
-1/1 [==============================] - 0s 32ms/step
-1/1 [==============================] - 0s 31ms/step
-1/1 [==============================] - 0s 32ms/step
-1/1 [==============================] - 0s 34ms/step
-1/1 [==============================] - 0s 31ms/step
-1/1 [==============================] - 0s 31ms/step
 1/1 [==============================] - 0s 31ms/step
 1/1 [==============================] - 0s 35ms/step
-1/1 [==============================] - 0s 34ms/step
+1/1 [==============================] - 0s 31ms/step
+1/1 [==============================] - 0s 32ms/step
+1/1 [==============================] - 0s 54ms/step
+1/1 [==============================] - 0s 32ms/step
+1/1 [==============================] - 0s 51ms/step
+1/1 [==============================] - 0s 47ms/step
+1/1 [==============================] - 0s 48ms/step
+1/1 [==============================] - 0s 55ms/step
 1/1 [==============================] - 0s 33ms/step
+1/1 [==============================] - 0s 42ms/step
 1/1 [==============================] - 0s 32ms/step
+1/1 [==============================] - 0s 31ms/step
+1/1 [==============================] - 0s 33ms/step
+1/1 [==============================] - 0s 31ms/step
 1/1 [==============================] - 0s 32ms/step
-1/1 [==============================] - 0s 38ms/step
-To be or not to beju
-cocio?
-axs? nujtentiogati swhm, gicfet
-wa meal,
+1/1 [==============================] - 0s 33ms/step
+1/1 [==============================] - 0s 33ms/step
+1/1 [==============================] - 0s 31ms/step
+1/1 [==============================] - 0s 32ms/step
+1/1 [==============================] - 0s 40ms/step
+1/1 [==============================] - 0s 52ms/step
+1/1 [==============================] - 0s 51ms/step
+1/1 [==============================] - 0s 53ms/step
+1/1 [==============================] - 0s 50ms/step
+1/1 [==============================] - 0s 48ms/step
+1/1 [==============================] - 0s 41ms/step
+1/1 [==============================] - 0s 33ms/step
+1/1 [==============================] - 0s 55ms/step
+1/1 [==============================] - 0s 46ms/step
+1/1 [==============================] - 0s 32ms/step
+1/1 [==============================] - 0s 31ms/step
+1/1 [==============================] - 0s 32ms/step
+1/1 [==============================] - 0s 48ms/step
+1/1 [==============================] - 0s 46ms/step
+To be or not to be-bhy fai!
+azi-in&#39;jeouths: an iv,&#39;&#39;t.
+miserf
+emes
+y
 </pre>
 </div>
 </div>
@@ -16328,7 +16622,7 @@ wa meal,
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[34]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[25]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># example 7</span>
@@ -16354,57 +16648,57 @@ wa meal,
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>1/1 [==============================] - 0s 31ms/step
+<pre>1/1 [==============================] - 0s 34ms/step
 1/1 [==============================] - 0s 31ms/step
-1/1 [==============================] - 0s 30ms/step
-1/1 [==============================] - 0s 30ms/step
-1/1 [==============================] - 0s 29ms/step
-1/1 [==============================] - 0s 34ms/step
-1/1 [==============================] - 0s 35ms/step
-1/1 [==============================] - 0s 33ms/step
-1/1 [==============================] - 0s 30ms/step
-1/1 [==============================] - 0s 29ms/step
-1/1 [==============================] - 0s 30ms/step
-1/1 [==============================] - 0s 34ms/step
-1/1 [==============================] - 0s 34ms/step
-1/1 [==============================] - 0s 30ms/step
 1/1 [==============================] - 0s 32ms/step
-1/1 [==============================] - 0s 31ms/step
-1/1 [==============================] - 0s 31ms/step
-1/1 [==============================] - 0s 45ms/step
-1/1 [==============================] - 0s 40ms/step
-1/1 [==============================] - 0s 40ms/step
-1/1 [==============================] - 0s 35ms/step
-1/1 [==============================] - 0s 41ms/step
-1/1 [==============================] - 0s 50ms/step
-1/1 [==============================] - 0s 30ms/step
-1/1 [==============================] - 0s 31ms/step
 1/1 [==============================] - 0s 33ms/step
-1/1 [==============================] - 0s 32ms/step
-1/1 [==============================] - 0s 37ms/step
-1/1 [==============================] - 0s 34ms/step
-1/1 [==============================] - 0s 31ms/step
-1/1 [==============================] - 0s 31ms/step
-1/1 [==============================] - 0s 35ms/step
-1/1 [==============================] - 0s 31ms/step
-1/1 [==============================] - 0s 33ms/step
-1/1 [==============================] - 0s 40ms/step
-1/1 [==============================] - 0s 34ms/step
-1/1 [==============================] - 0s 50ms/step
 1/1 [==============================] - 0s 42ms/step
-1/1 [==============================] - 0s 40ms/step
-1/1 [==============================] - 0s 59ms/step
-1/1 [==============================] - 0s 56ms/step
-1/1 [==============================] - 0s 45ms/step
-1/1 [==============================] - 0s 47ms/step
-1/1 [==============================] - 0s 46ms/step
-1/1 [==============================] - 0s 44ms/step
-1/1 [==============================] - 0s 32ms/step
 1/1 [==============================] - 0s 37ms/step
+1/1 [==============================] - 0s 33ms/step
+1/1 [==============================] - 0s 30ms/step
+1/1 [==============================] - 0s 31ms/step
+1/1 [==============================] - 0s 31ms/step
+1/1 [==============================] - 0s 31ms/step
+1/1 [==============================] - 0s 31ms/step
+1/1 [==============================] - 0s 45ms/step
+1/1 [==============================] - 0s 33ms/step
+1/1 [==============================] - 0s 33ms/step
+1/1 [==============================] - 0s 46ms/step
+1/1 [==============================] - 0s 46ms/step
+1/1 [==============================] - 0s 51ms/step
+1/1 [==============================] - 0s 31ms/step
+1/1 [==============================] - 0s 46ms/step
+1/1 [==============================] - 0s 47ms/step
+1/1 [==============================] - 0s 49ms/step
+1/1 [==============================] - 0s 36ms/step
+1/1 [==============================] - 0s 30ms/step
+1/1 [==============================] - 0s 31ms/step
 1/1 [==============================] - 0s 32ms/step
+1/1 [==============================] - 0s 33ms/step
+1/1 [==============================] - 0s 32ms/step
+1/1 [==============================] - 0s 34ms/step
 1/1 [==============================] - 0s 31ms/step
 1/1 [==============================] - 0s 33ms/step
-To be or not to be so longer than you shall be so of the strange fro
+1/1 [==============================] - 0s 31ms/step
+1/1 [==============================] - 0s 35ms/step
+1/1 [==============================] - 0s 31ms/step
+1/1 [==============================] - 0s 46ms/step
+1/1 [==============================] - 0s 46ms/step
+1/1 [==============================] - 0s 52ms/step
+1/1 [==============================] - 0s 50ms/step
+1/1 [==============================] - 0s 50ms/step
+1/1 [==============================] - 0s 50ms/step
+1/1 [==============================] - 0s 37ms/step
+1/1 [==============================] - 0s 32ms/step
+1/1 [==============================] - 0s 32ms/step
+1/1 [==============================] - 0s 33ms/step
+1/1 [==============================] - 0s 33ms/step
+1/1 [==============================] - 0s 50ms/step
+1/1 [==============================] - 0s 56ms/step
+1/1 [==============================] - 0s 58ms/step
+1/1 [==============================] - 0s 51ms/step
+1/1 [==============================] - 0s 50ms/step
+To be or not to be a man that i say, and the strangeness, that i saw
 </pre>
 </div>
 </div>
@@ -16445,8 +16739,9 @@ To be or not to be so longer than you shall be so of the strange fro
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>I would be interested in using data from other authors, for example Jane Austen, to train the network. It would then be interesting to take the exact same prompt and feed it to the models to then be able to compare the models and resulting texts which each other and (hopefully) have a good example of what different authors would have written about specific prompts.
-When using other data, the respective dataset would need to be prepared for the network. When using text, the data would need to be vectorized, encoded and tokenized for the machine to be able to work with it.</p>
+<p>I would be interested in using data from other authors, for example Jane Austen, to train the network. It would then be interesting to take the exact same prompt and feed it to the models to then be able to compare the models and resulting texts which each other and (hopefully) have a good example of what different authors would have written about specific prompts. In the larger context of possible projects this network could me useful for, an interactive exhibition with several different authors could be a great experience. Therefore this project would be useful for cultural heritage institutions, especially literary ones, like the british library for example. 
+When using other data, the respective dataset would need to be prepared for the network. When using text, the data would need to be vectorized, encoded and tokenized for the machine to be able to work with it. Since data is a very unique topic, this part will probably be adjusted the most.</p>
+<p>Furthermore, this project could be extended beyond the area of authors and literature. To do so, though, more parts of the training might have to be adjusted.</p>
 
 </div>
 </div>
